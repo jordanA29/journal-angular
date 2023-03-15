@@ -16,14 +16,22 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
+    "target": "esnext",
+    "module": "esnext",
     "lib": [
-      "ES2022",
+      "esnext",
       "dom"
     ]
   },
+  "include": [
+    "../node_modules/cypress",
+    "**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "cypress",
+    "cypress.config.ts",
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
