@@ -1,11 +1,15 @@
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import {
+  createComponentFactory,
+  createRoutingFactory,
+  Spectator,
+} from '@ngneat/spectator';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  let spectator: Spectator<AppComponent>
-  const createComponent = createComponentFactory(AppComponent)
+  let spectator: Spectator<AppComponent>;
+  const createComponent = createRoutingFactory(AppComponent);
   beforeEach(() => {
-    spectator = createComponent()
+    spectator = createComponent();
   });
 
   it('should create the app', () => {

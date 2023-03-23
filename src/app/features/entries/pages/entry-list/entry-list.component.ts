@@ -8,12 +8,12 @@ import { EntryService } from '../../services/entry.service';
   styleUrls: ['./entry-list.component.sass'],
 })
 export class EntryListComponent {
-  entries: Entry[] = []
+  entries: Entry[] = [];
 
-  constructor(private entryService: EntryService) { }
+  constructor(private entryService: EntryService) {}
   ngOnInit() {
     this.entryService
-      .getAll()
-      .subscribe((data: Entry[]) => (this.entries = data))
+      .getEntries()
+      .subscribe((data: Entry[]) => (this.entries = data));
   }
 }
