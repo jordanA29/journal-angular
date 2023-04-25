@@ -1,0 +1,28 @@
+
+.add-entry-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.entry-list {
+    margin-top: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+/* Create three equal columns that float next to each other */
+.entry-list-skeleton {
+    float: left;
+    width: 8%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

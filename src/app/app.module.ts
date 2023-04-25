@@ -10,6 +10,7 @@ import { EntriesModule } from './features/entries/entries.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    EntriesModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,

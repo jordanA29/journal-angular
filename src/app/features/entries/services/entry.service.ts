@@ -25,8 +25,8 @@ export class EntryService {
     );
   }
 
-  public create(entry: Entry): Observable<Entry | undefined> {
-    return this.http.post<Entry>(this.entriesUrl, entry).pipe(
+  public createEntry(entry: Entry): Observable<number | undefined> {
+    return this.http.post<number>(this.entriesUrl, entry).pipe(
       catchError((err: HttpErrorResponse) => {
         this.handleError(err);
         return of(undefined);

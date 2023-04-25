@@ -17,9 +17,9 @@ describe('EntryService', () => {
   // => get a list of entries and verify entries is populated ?
   it('#getEntries should get a list of entries', (done) => {
     const expectedEntries: Entry[] = [
-      { id: 1, title: 'title1', content: 'content1' },
-      { id: 2, title: 'title2', content: 'content2' },
-      { id: 3, title: 'title3', content: 'content3' },
+      { id: 1, title: 'title1', content: 'content1', date: '2021-01-01' },
+      { id: 2, title: 'title2', content: 'content2', date: '2021-01-01' },
+      { id: 3, title: 'title3', content: 'content3', date: '2021-01-01' },
     ];
     spectator.service.getEntries().subscribe((data) => {
       expect(data).toEqual(expectedEntries);
@@ -30,9 +30,9 @@ describe('EntryService', () => {
   });
 
   it('#getEntries should return an empty object on error ', (done: DoneFn) => {
-    const expectedEntires: Entry[] = [];
+    const expectedEntries: Entry[] = [];
     spectator.service.getEntries().subscribe((data) => {
-      expect(data).toEqual(expectedEntires);
+      expect(data).toEqual(expectedEntries);
       done();
     });
     const request = spectator.expectOne(entriesUrl, HttpMethod.GET);
@@ -47,6 +47,7 @@ describe('EntryService', () => {
       id: 1,
       title: 'title1',
       content: 'content1',
+      date: '2021-01-01',
     };
 
     spectator.service.getEntry(1).subscribe((data: Entry | undefined) => {
@@ -89,21 +90,29 @@ describe('EntryService', () => {
     );
   });
 
-  it('#createEntry should return the created object when creating', () => {
-    const newEntry: Entry = { title: 'Test', content: 'Test' };
-    spectator.service.create(newEntry).subscribe((data) => {
-      expect(data).toEqual(newEntry);
+  it('#createEntry should return the created object id when creating', () => {
+    const newEntry: Entry = {
+      title: 'Test',
+      content: 'Test',
+      date: '2021-01-01',
+    };
+    spectator.service.createEntry(newEntry).subscribe((data) => {
+      expect(data).toEqual(jasmine.any(Number));
     });
     const req = spectator.expectOne(entriesUrl, HttpMethod.POST);
     expect(req.request.body).toEqual(newEntry);
-    req.flush(newEntry);
+    req.flush(10005);
   });
 
   it('#createEntry should handle errors when creating an entry', () => {
-    const newEntry: Entry = { title: 'Test', content: 'Test' };
+    const newEntry: Entry = {
+      title: 'Test',
+      content: 'Test',
+      date: '2021-01-01',
+    };
     const errorMessage = 'Something went wrong';
     spyOn(spectator.service, 'handleError');
-    spectator.service.create(newEntry).subscribe({
+    spectator.service.createEntry(newEntry).subscribe({
       error: (e) => {
         expect(spectator.service.handleError).toHaveBeenCalled();
         expect(e.message).toContain(errorMessage);

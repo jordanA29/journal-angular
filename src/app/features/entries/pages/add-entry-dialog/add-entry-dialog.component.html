@@ -1,0 +1,13 @@
+<div data-cy="add-entry-dialog">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="add-entry-form">
+    <mat-form-field class="add-entry-form-title">
+      <mat-label>Title</mat-label>
+      <input matInput name="title" ngModel />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Content</mat-label>
+      <input matInput name="content" ngModel />
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Add Entry</button>
+  </form>
+</div>

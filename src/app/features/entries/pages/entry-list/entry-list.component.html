@@ -1,19 +1,16 @@
-<form class="add-entry-form">
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput name="title" />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Content</mat-label>
-    <input matInput name="content" />
-  </mat-form-field>
-  <button mat-raised-button color="primary">Add Entry</button>
-</form>
 
-<section data-cy="entry-list">
-  <div *ngFor="let entry of entries">
-    <div data-cy="entry-list-itm">
-      Entry: {{ entry.title }} - {{ entry.content }}
-    </div>
+<div class="entry-list">
+  <div
+    class="entry-list-skeleton"
+    data-cy="entry-list-skeleton"
+    *ngFor="let i of 7 | numberToArray"
+  >
+    <app-entry-skeleton></app-entry-skeleton>
   </div>
-</section>
+</div>
+
+<!-- <section class="entry-list" data-cy="entry-list">
+  <div *ngFor="let entry of entries">
+    <app-entry [entry]="entry"> </app-entry>
+  </div>
+</section> -->
